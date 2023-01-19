@@ -1,7 +1,7 @@
 import telebot
 from .config import settings
 from datetime import datetime
-from .Messages.messages import Message
+from .messages.messages import Message
 
 TOKEN=settings.SECRET_KEY
 
