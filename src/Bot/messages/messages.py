@@ -44,23 +44,39 @@ Escolha a opção para visualizar o cardápio:
 
 """
 
-    def cardapio(self, unidade: str, items_cardapio: dict):
+    def cardapio(self, unidade: str, cardapio: dict):
+        items_cardapio_almoco = cardapio[0]
+        items_cardapio_jantar = cardapio[1]
         return f"""
 O cardapio da {unidade} é:
 
 Almoço:
 
-   \U0001F35A - {items_cardapio.get('arroz_feijao')}
+   \U0001F35A - {items_cardapio_almoco.get('arroz_feijao')}
 
-   \U0001F357 - {items_cardapio.get('mistura_principal')}
+   \U0001F357 - {items_cardapio_almoco.get('mistura_principal')}
 
-   \U0001F958 - {items_cardapio.get('mistura_secundaria')}
+   \U0001F958 - {items_cardapio_almoco.get('mistura_secundaria')}
 
-   \U0001F9C6 - {items_cardapio.get('pvt')}
+   \U0001F9C6 - {items_cardapio_almoco.get('pvt')}
 
-   \U0001F957 - {items_cardapio.get('salada')}
+   \U0001F957 - {items_cardapio_almoco.get('salada')}
 
-   \U0001F367 - {items_cardapio.get('sobremesa')}
+   \U0001F367 - {items_cardapio_almoco.get('sobremesa')}
+
+Jantar:
+
+   \U0001F35A - {items_cardapio_jantar.get('arroz_feijao')}
+
+   \U0001F357 - {items_cardapio_jantar.get('mistura_principal')}
+
+   \U0001F958 - {items_cardapio_jantar.get('mistura_secundaria')}
+
+   \U0001F9C6 - {items_cardapio_jantar.get('pvt')}
+
+   \U0001F957 - {items_cardapio_jantar.get('salada')}
+
+   \U0001F367 - {items_cardapio_jantar.get('sobremesa')}
         
 """
         
