@@ -50,7 +50,7 @@ class Crawler:
             template = f'[<td id="{refeicao}{self.dia}">'
             dados = dados.split('<br/>')
             primeiro_item = dados[0].split(template)
-            dados[0] = primeiro_item[1]
+            dados[0] = primeiro_item[1].replace('/', ',')
             dados.pop()
             labels = ['arroz_feijao', 'mistura_principal', 'pvt', 'mistura_secundaria','salada','sobremesa','pao_refresco']
 
