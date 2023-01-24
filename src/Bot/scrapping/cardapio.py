@@ -53,7 +53,6 @@ class Crawler:
             dados[0] = primeiro_item[1].replace('/', ',')
             dados.pop()
             labels = ['arroz_feijao', 'mistura_principal', 'pvt', 'mistura_secundaria','salada','sobremesa','pao_refresco']
-
             resultado = {}
             x = 0
             for dado in dados:
