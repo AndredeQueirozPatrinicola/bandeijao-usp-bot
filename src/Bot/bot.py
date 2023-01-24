@@ -16,8 +16,8 @@ class Bot:
 	def get_currently_meal(message):
 		print(f'[{message.from_user.username} | {message.from_user.first_name} | GET:{message.text}- {datetime.now()}]')
 		try:
-			cardapio = Crawler(message.text)
-			dados = cardapio.trata_dados('almoco')
+			crawler = Crawler(message.text)
+			dados = [crawler.trata_dados('almoco'), crawler.trata_dados('jantar')]
 			response = Message().cardapio(message.text, dados)
 			bot.reply_to(message, response)
 		except Exception as e:
