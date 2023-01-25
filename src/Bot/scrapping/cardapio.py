@@ -2,19 +2,28 @@ from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 from functools import cached_property
 from datetime import datetime
-from .utils import Utils
+
 
 
 class Crawler:
 
     def __init__(self, unidade) -> None:
-        self._dia = datetime.now().weekday()
         self.unidade = unidade
+        self._dia = datetime.now().weekday()
         self._url = "https://uspdigital.usp.br/rucard/Jsp/cardapioSAS.jsp?codrtn="
 
     @property
     def dia(self):
-        return Utils().pega_dia_da_semana(self._dia)
+        dias = {
+            0 : 'Segunda',
+            1 : 'Terca',
+            2 : 'Quarta',
+            3 : 'Quinta',
+            4 : 'Sexta',
+            5 : 'Sabado',
+            6 : "Domingo",
+        }
+        return dias.get(self._dia)
 
     @property
     def url(self):
@@ -53,18 +62,20 @@ class Crawler:
             dados[0] = primeiro_item[1].replace('/', ',')
             dados.pop()
             labels = ['arroz_feijao', 'mistura_principal', 'pvt', 'mistura_secundaria','salada','sobremesa','pao_refresco']
-            resultado = {}
-            x = 0
-            for dado in dados:
-                resultado[labels[x]] = dado
-                x += 1
-
-            if not resultado:
-                raise Exception("No-Data")
-
-            return resultado
         except:
-            raise Exception("No-data")
+            raise Exception("Bad-data")
+        
+        resultado = {}
+        x = 0
+        for dado in dados:
+            resultado[labels[x]] = dado
+            x += 1
+
+        if not resultado:
+            raise Exception("No-Data")
+
+        return resultado
+
 
         
 

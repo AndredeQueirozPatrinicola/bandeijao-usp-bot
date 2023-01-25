@@ -1,5 +1,4 @@
-
-
+from datetime import datetime
 
 
 class Message:
@@ -14,7 +13,32 @@ class Message:
             return False
         return True
 
-    def error(self, comando,  exception):
+    def pega_dia_da_semana(self, dia):
+        dias = {
+            0 : 'Segunda',
+            1 : 'Terca',
+            2 : 'Quarta',
+            3 : 'Quinta',
+            4 : 'Sexta',
+            5 : 'Sabado',
+            6 : "Domingo",
+        }
+        return dias.get(dia)
+
+    def formata_data(self):
+        dia = int(datetime.now().day)
+        mes = int(datetime.now().month)
+        ano = datetime.now().year
+        
+        if dia < 10:
+            dia = f'0{dia}'
+        if mes < 10:
+            mes = f'0{mes}'
+
+        return f'{dia}/{mes}/{ano}'
+
+
+    def error(self, comando):
         return f"""
 \U0000274C Houve um erro ao processar os dados. \U0000274C 	
 
@@ -24,7 +48,7 @@ class Message:
 
     {comando}
 
-    Ou digite qualquer coisa para voltar ao menu.
+    Ou volte para o /Menu.
 
         """
 
@@ -48,7 +72,9 @@ Escolha a opção para visualizar o cardápio:
         items_cardapio_almoco = cardapio[0]
         items_cardapio_jantar = cardapio[1]
         return f"""
-O cardapio da {unidade} é:
+\U0001F4C5 {self.pega_dia_da_semana(datetime.now().weekday())} - {self.formata_data()}
+
+\U0001F9FE O cardapio da {unidade} é:
 
 Almoço:
 
@@ -77,6 +103,8 @@ Jantar:
    \U0001F957 - {items_cardapio_jantar.get('salada')}
 
    \U0001F367 - {items_cardapio_jantar.get('sobremesa')}
-        
+
+
+\U0001F449 Voltar ao /Menu
 """
         

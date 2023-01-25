@@ -14,14 +14,15 @@ class Bot:
 
 	@bot.message_handler(commands=['Quimicas', "Fisica", "Central", "Prefeitura"])
 	def get_currently_meal(message):
-		print(f'[{message.from_user.username} | {message.from_user.first_name} | GET:{message.text}- {datetime.now()}]')
 		try:
 			crawler = Crawler(message.text)
 			dados = [crawler.trata_dados('almoco'), crawler.trata_dados('jantar')]
 			response = Message().cardapio(message.text, dados)
+			print(f'[{message.from_user.username} | {message.from_user.first_name} | GET:{message.text} / Status: Ok! - {datetime.now()}]')
 			bot.reply_to(message, response)
 		except Exception as e:
-			response = Message().error(message.text, e)
+			response = Message().error(message.text)
+			print(f'[{message.from_user.username} | {message.from_user.first_name} | GET:{message.text} / Status: ERROR! {e} - {datetime.now()}]')
 			bot.reply_to(message, response)
 
 	@bot.message_handler(func=lambda T: True)
