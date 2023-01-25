@@ -2,6 +2,9 @@
 
 Projeto de Web Scrapping que coleta as informações de cardápio do restaurante universitário da USP e entrega em formato de ChatBOT
 
+### Obs:
+
+Criar bot pelo *[BotFather](https://core.telegram.org/bots#how-do-i-create-a-bot)* do Telegram
 
 ### Setup:
 
@@ -17,8 +20,6 @@ Projeto de Web Scrapping que coleta as informações de cardápio do restaurante
 
     SECRET_KEY=TOKEN_BOT_API
 
-### Obs:
 
-Criar bot pelo *[BotFather](https://core.telegram.org/bots#how-do-i-create-a-bot)* do Telegram
 
 
